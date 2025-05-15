@@ -1,3 +1,46 @@
+Instructions for mounting nobackup 
+
+Source: https://github.com/danholdaway/dotfiles 
+Backup: https://github.com/cohen-seth/dotfiles         (cohen-seth’s fork of danholdaway’s repo)
+
+This guide assumes you’ve already downloaded the tcluster.py script from https://github.com/danholdaway/dotfiles and setup the tunnel to discover. If not, you must follow the instructions on the GitHub page to set up the tunnel first.
+
+
+1. Download/Reinstall SSHFS (Use Self Service)
+
+2. Add to your ~/.zshrc:
+
+	# Mount
+	# -----
+	alias  mountremotedrive='sshfs {{machine}}:/{{remote_path}}/ $HOME/Volumes/remotedrive'
+	alias  umountremotedrive='diskutil unmountDisk force $HOME/Volumes/remotedrive'
+
+	example:
+
+	# Mount
+	# -----
+	alias mountnobackup='sshfs discover:/discover/nobackup/sicohen/ $HOME/Volumes/nobackup'
+	alias unmountnobackup='diskutil unmountDisk force $HOME/Volumes/nobackup'
+
+3. Download MacFuse - https://osxfuse.github.io/
+      *** If possible, you should open the instructions on a separate device and/or take photos to use later on.  
+      **** You will need admin privileges for this. 
+      *****Partway, through you will need to restart your computer so save all work. 
+
+	 - Run the installer
+      - Follow the instructions: https://github.com/macfuse/macfuse/wiki/Getting-Started  
+      		-  After restarting you may need to be granted admin privileges if they get reset by the restart. 
+
+To Use:
+
+A.  Create tunnel with ctunnel 
+B.  Open a new window and from your desktop run mountremotedrive 
+C.  Then go to Finder > {username} > Volumes. In here you should see your /discover/nobackup/{username}/ 
+D.  You can then open up VSCode then select File > Open and select the mounted drive folder (the directory within Volumes with your nobackup) 
+
+</div>
+# Original README by dholdaway:
+
 # Using an Integrated Development Environment (IDE) such as VSCode on Hera.
 
 ### Step 1: Identify Local Port on Hera
